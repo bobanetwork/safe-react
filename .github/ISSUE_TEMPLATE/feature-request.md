@@ -1,6 +1,7 @@
 ---
 name: Feature request
-about: Create a feature request for the Gnosis Safe
+about: Create a feature request for the Boba Multisig
+
 ---
 
 <!--

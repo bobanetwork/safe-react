@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import cn from 'classnames'
 import * as React from 'react'
 import { useDispatch } from 'react-redux'
+import AppstoreButton from 'src/components/AppstoreButton'
 
 import GnoButtonLink from 'src/components/layout/ButtonLink'
 import Link from 'src/components/layout/Link'
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
     flexShrink: '1',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    alignItems: 'center',
     margin: '0 auto',
     maxWidth: '100%',
     padding: `20px ${sm} 20px`,
@@ -43,7 +45,7 @@ const useStyles = makeStyles({
 } as any)
 
 const Footer = (): React.ReactElement => {
-  const appVersion = process.env.REACT_APP_APP_VERSION ? `v${process.env.REACT_APP_APP_VERSION} ` : 'Versions'
+  //const appVersion = process.env.REACT_APP_APP_VERSION ? `v${process.env.REACT_APP_APP_VERSION} ` : 'Versions'
   const date = new Date()
   const classes = useStyles()
   const dispatch = useDispatch()
@@ -54,13 +56,13 @@ const Footer = (): React.ReactElement => {
 
   return (
     <footer className={classes.footer}>
-      <span className={classes.item}>©{date.getFullYear()} Gnosis</span>
+      <span className={classes.item}>©{date.getFullYear()} Enya</span>
       <span className={classes.sep}>|</span>
-      <Link className={cn(classes.item, classes.link)} target="_blank" to="https://gnosis-safe.io/terms">
+      <Link className={cn(classes.item, classes.link)} target="_blank" to="https://www.enya.ai/utility/terms">
         Terms
       </Link>
       <span className={classes.sep}>|</span>
-      <Link className={cn(classes.item, classes.link)} target="_blank" to="https://gnosis-safe.io/privacy">
+      <Link className={cn(classes.item, classes.link)} target="_blank" to="https://www.enya.ai/utility/privacy">
         Privacy
       </Link>
       <span className={classes.sep}>|</span>
@@ -68,25 +70,25 @@ const Footer = (): React.ReactElement => {
         Licenses
       </Link>
       <span className={classes.sep}>|</span>
-      <Link className={cn(classes.item, classes.link)} target="_blank" to="https://gnosis-safe.io/imprint">
+      <Link className={cn(classes.item, classes.link)} target="_blank" to="https://www.enya.ai/company/contact">
         Imprint
       </Link>
       <span className={classes.sep}>|</span>
-      <Link className={cn(classes.item, classes.link)} target="_blank" to="https://gnosis-safe.io/cookie">
+      {/* <Link className={cn(classes.item, classes.link)} target="_blank" to="https://gnosis-safe.io/cookie">
         Cookie Policy
-      </Link>
-      <span className={classes.sep}>-</span>
+      </Link> 
+      <span className={classes.sep}>-</span>*/}
       <GnoButtonLink className={cn(classes.item, classes.link, classes.buttonLink)} onClick={openCookiesHandler}>
         Preferences
       </GnoButtonLink>
-      <span className={classes.sep}>|</span>
-      <Link
+      {/*<span className={classes.sep}>|</span>
+       <Link
         className={cn(classes.item, classes.link)}
         target="_blank"
         to="https://github.com/gnosis/safe-react/releases"
       >
         {appVersion}
-      </Link>
+      </Link> */}
     </footer>
   )
 }

@@ -41,7 +41,7 @@ describe('<Footer>', () => {
 
     const termsLinkNode = screen.getByText('Terms')
 
-    expect(termsLinkNode).toHaveAttribute('href', 'https://gnosis-safe.io/terms')
+    expect(termsLinkNode).toHaveAttribute('href', 'https://www.enya.ai/utility/terms')
     expect(termsLinkNode).toHaveAttribute('target', '_blank')
   })
 
@@ -50,7 +50,7 @@ describe('<Footer>', () => {
 
     const privacyLinkNode = screen.getByText('Privacy')
 
-    expect(privacyLinkNode).toHaveAttribute('href', 'https://gnosis-safe.io/privacy')
+    expect(privacyLinkNode).toHaveAttribute('href', 'https://www.enya.ai/utility/privacy')
     expect(privacyLinkNode).toHaveAttribute('target', '_blank')
   })
 
@@ -68,7 +68,7 @@ describe('<Footer>', () => {
 
     const imprintLinkNode = screen.getByText('Imprint')
 
-    expect(imprintLinkNode).toHaveAttribute('href', 'https://gnosis-safe.io/imprint')
+    expect(imprintLinkNode).toHaveAttribute('href', 'https://www.enya.ai/company/contact')
     expect(imprintLinkNode).toHaveAttribute('target', '_blank')
   })
 
