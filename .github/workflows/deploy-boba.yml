@@ -64,9 +64,7 @@ jobs:
           yarn global add cross-env@7.0.3 --ignore-scripts
           yarn global add patch-package@6.4.7 --ignore-scripts
           yarn global add typechain@5.1.2 --ignore-scripts
-          yarn install --cache-folder ./.yarncache --frozen-lockfile
-          rm -rf .yarncache
-          yarn cache clean
+          yarn install
 
       - name: Build app
         run: yarn build
