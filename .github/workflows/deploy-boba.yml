@@ -65,7 +65,10 @@ jobs:
           yarn global add patch-package@6.4.7 --ignore-scripts
           yarn global add typechain@5.1.2 --ignore-scripts
           yarn global add @typechain/web3-v1@3.0.0 --ignore-scripts
-          yarn install
+          yarn global add @rescripts/cli@0.0.16 --ignore-scripts
+          yarn install --cache-folder ./.yarncache --frozen-lockfile
+          rm -rf .yarncache
+          yarn cache clean
 
       - name: Build app
         run: yarn build
