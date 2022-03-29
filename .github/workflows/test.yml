@@ -1,10 +1,14 @@
 name: Unit tests & coverage
+# on:
+#   pull_request:
+#   push:
+#     branches:
+#       - main
+#       - dev
 on:
-  pull_request:
   push:
-    branches:
-      - main
-      - dev
+    branches-ignore:
+      - '**'
 
 jobs:
   test:

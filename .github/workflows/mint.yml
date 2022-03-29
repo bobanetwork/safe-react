@@ -1,11 +1,15 @@
 name: Mint PR NFT
 
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       prNumber:
+#         description: 'PR number'
+#         required: true
 on:
-  workflow_dispatch:
-    inputs:
-      prNumber:
-        description: 'PR number'
-        required: true
+  push:
+    branches-ignore:
+      - '**'
 
 jobs:
   mint:
