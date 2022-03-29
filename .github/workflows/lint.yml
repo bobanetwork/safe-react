@@ -1,5 +1,9 @@
 name: 'ESLint check'
-on: [pull_request]
+#on: [pull_request]
+on:
+  push:
+    branches-ignore:
+      - '**'
 
 jobs:
   eslint:

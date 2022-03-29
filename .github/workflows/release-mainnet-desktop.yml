@@ -1,7 +1,11 @@
 name: Build/Release Mainnet desktop app
 
 # this will help you specify where to run
-on: workflow_dispatch
+#on: workflow_dispatch
+on:
+  push:
+    branches-ignore:
+      - '**'
 
 env:
   REACT_APP_FORTMATIC_KEY: ${{ secrets.REACT_APP_FORTMATIC_KEY }}
