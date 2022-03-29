@@ -69,4 +69,4 @@ jobs:
       # Script to deploy to the dev environment
       - name: 'Deploy to S3: prod'
         working-directory: ./build
-        run: aws s3 sync . ${{ env.S3_BUCKET }} --delete && aws cloudfront create-invalidation --distribution-id {{ env.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        run: aws s3 sync . ${{ env.S3_BUCKET }} --delete && aws cloudfront create-invalidation --distribution-id ${{ env.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
