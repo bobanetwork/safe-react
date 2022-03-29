@@ -14,14 +14,7 @@ on:
     types: [published]
 
 env:
-  # REPO_NAME_ALPHANUMERIC: safereact
-  # STAGING_BUCKET_NAME: ${{ secrets.STAGING_BUCKET_NAME }}
-  # REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN_MAINNET }}
-  # REACT_APP_ETHERSCAN_API_KEY: ${{ secrets.REACT_APP_ETHERSCAN_API_KEY }}
-  # REACT_APP_ETHGASSTATION_API_KEY: ${{ secrets.REACT_APP_ETHGASSTATION_API_KEY }}
-  NODE_ENV: ${{ secrets.NODE_ENV }}
   REACT_APP_DEFAULT_CHAIN_ID: ${{ secrets.REACT_APP_DEFAULT_CHAIN_ID }}
-  REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
   REACT_APP_GATEWAY_URL: ${{ secrets.REACT_APP_GATEWAY_URL }}
   REACT_APP_GOOGLE_TAG_MANAGER_ID: ${{ secrets.REACT_APP_GOOGLE_TAG_MANAGER_ID }}
   REACT_APP_GOOGLE_TAG_MANAGER_LIVE_AUTH: ${{ secrets.REACT_APP_GOOGLE_TAG_MANAGER_LIVE_AUTH }}
@@ -57,19 +50,15 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install python3-pip python3-dev libusb-1.0-0-dev libudev-dev
           pip install awscli --upgrade --user
-          # Due to some dependencies yarn may randomly throw an error about invalid cache
-          # This approach is taken from https://github.com/yarnpkg/yarn/issues/7212#issuecomment-506155894 to fix the issue
-          # Another approach is to install with flag --network-concurrency 1, but this will make the installation pretty slow (default value is 8)
-          mkdir .yarncache
-          yarn install --cache-folder ./.yarncache --frozen-lockfile
-          rm -rf .yarncache
-          yarn cache clean
+          yarn install
 
       - name: Build app
         run: yarn build
         env:
           REACT_APP_APP_VERSION: ${{ github.event.release.tag_name }}
-
+          NODE_ENV: ${{ secrets.NODE_ENV }}
+          REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
+  
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -80,5 +69,4 @@ jobs:
       # Script to deploy to the dev environment
       - name: 'Deploy to S3: prod'
         working-directory: ./build
-        run: aws s3 sync . s3://${{ env.S3_BUCKET }} --delete && aws cloudfront create-invalidation --distribution-id {{ env.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
-
+        run: aws s3 sync . ${{ env.S3_BUCKET }} --delete && aws cloudfront create-invalidation --distribution-id {{ env.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
