@@ -69,6 +69,7 @@ jobs:
           # yarn install --cache-folder ./.yarncache --frozen-lockfile
           # rm -rf .yarncache
           # yarn cache clean
+          yarn install
 
       - name: Build app
         run: yarn build
