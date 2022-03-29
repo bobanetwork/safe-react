@@ -62,9 +62,9 @@ jobs:
           # Another approach is to install with flag --network-concurrency 1, but this will make the installation pretty slow (default value is 8)
           mkdir .yarncache
 
-      - run: yarn add cross-env@7.0.3
+      - run: yarn add cross-env@7.0.3 --ignore-scripts
 
-      - run: yarn add patch-package@6.4.7
+      - run: yarn add patch-package@6.4.7 --ignore-scripts
 
       - run: |
           yarn install --cache-folder ./.yarncache --frozen-lockfile
